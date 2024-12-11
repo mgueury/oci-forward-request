@@ -15,7 +15,7 @@ locals {
 # IDCS
 resource "oci_identity_domains_dynamic_resource_group" "starter_ci_dyngroup" {
   #Required
-  count          = (idcs_domain_name=="Default"?0:1) 
+  count          = (var.idcs_domain_name=="Default"?0:1) 
   provider       = oci.home
   display_name = "${var.prefix}-ci-dyngroup"
   idcs_endpoint = local.idcs_url
@@ -25,7 +25,7 @@ resource "oci_identity_domains_dynamic_resource_group" "starter_ci_dyngroup" {
 
 # Identity Domain
 resource "oci_identity_dynamic_group" "starter_ci_dyngroup" {
-  count          = (idcs_domain_name=="Default"?1:0) 
+  count          = (var.idcs_domain_name=="Default"?1:0) 
   provider       = oci.home    
   name           = "${var.prefix}-ci-dyngroup"
   description    = "Starter - All Container Instances"
