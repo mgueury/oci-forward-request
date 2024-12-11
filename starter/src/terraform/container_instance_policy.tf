@@ -14,7 +14,7 @@ resource "oci_identity_domains_dynamic_resource_group" "starter_ci_dyngroup" {
 }
 
 resource "oci_identity_dynamic_group" "starter_ci_dyngroup" {
-  count          = (idcs_domain_name=="Default"?0:1) 
+  count          = (idcs_domain_name=="Default"?1:0) 
   provider       = oci.home    
   name           = "${var.prefix}-ci-dyngroup"
   description    = "Starter - All Container Instances"
