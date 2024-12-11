@@ -6,6 +6,10 @@ import requests
 import oci
 from datetime import datetime
 
+# Flask
+app = Flask(__name__)
+CORS(app)
+
 # -- log --------------------------------------------------------------------
 
 def log(s):
@@ -54,19 +58,13 @@ def test2():
 
 # -- main -------------------------------------------------------------------
 
-log( "START" )
+log( "BEFORE SIGNER" )
 
 # Signer
 signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
 config = {'region': signer.region, 'tenancy': signer.tenancy_id}
 
 log( "AFTER SIGNER" )
-
-# Flask
-app = Flask(__name__)
-CORS(app)
-
-log( "AFTER FLASK" )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)  
