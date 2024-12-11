@@ -21,7 +21,6 @@ resource "oci_identity_domains_dynamic_resource_group" "starter_ci_dyngroup" {
   idcs_endpoint = local.idcs_url
   matching_rule  = "ALL {resource.type='computecontainerinstance'}"
   schemas = ["urn:ietf:params:scim:schemas:oracle:idcs:DynamicResourceGroup"]
-  freeform_tags = local.freeform_tags
 }
 
 # Identity Domain
