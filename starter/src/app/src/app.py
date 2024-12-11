@@ -21,6 +21,10 @@ def log(s):
 @app.route('/20240531/<path:path>', methods=['POST'])
 def forward_request_post(path):
     global signer
+    log( "BEFORE SIGNER" )
+    signer = oci.auth.signers.ResourcePrincipalsFederationSigner()
+    config = {'region': signer.region, 'tenancy': signer.tenancy_id}
+    log( "AFTER SIGNER" )
 
     target_url = f'https://agent-runtime.generativeai.eu-frankfurt-1.oci.oraclecloud.com/20240531/{path}' 
     log( target_url )
@@ -57,14 +61,6 @@ def test2():
     log( "</test2>")
 
 # -- main -------------------------------------------------------------------
-
-log( "BEFORE SIGNER" )
-
-# Signer
-signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
-config = {'region': signer.region, 'tenancy': signer.tenancy_id}
-
-log( "AFTER SIGNER" )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)  
