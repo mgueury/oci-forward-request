@@ -25,7 +25,7 @@ def forward_request_post(path):
     api_key = request.headers.get('API_KEY')
 
     if api_key != os.getenv('API_KEY'):
-        log( str(request.headers) ) 
+        log( json.dumps(dict(request.headers), indent=4) ) 
         log( "ERROR: " + os.getenv('API_KEY') )
         return "ERROR: " + api_key, 401
 
