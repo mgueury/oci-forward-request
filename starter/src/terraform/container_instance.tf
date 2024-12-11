@@ -6,6 +6,12 @@ variable docker_image_app {
     default=""
 } 
 
+variable api_key {
+    default="12345"
+} 
+
+${var.api_key}
+
 resource oci_container_instances_container_instance starter_container_instance {
   count = var.docker_image_ui == "" ? 0 : 1
   availability_domain = data.oci_identity_availability_domain.ad.name
@@ -16,7 +22,7 @@ resource oci_container_instances_container_instance starter_container_instance {
     image_url = var.docker_image_app
     is_resource_principal_disabled = "false"
     environment_variables = { 
-      "API_KEY" = "12345"
+      "API_KEY" = "${var.api_key}"
     }    
   }
   containers {
