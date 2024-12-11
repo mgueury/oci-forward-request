@@ -22,7 +22,7 @@ def log(s):
 def forward_request_post(path):
     global signer
     log( "BEFORE SIGNER" )
-    signer = oci.auth.signers.ResourcePrincipalsFederationSigner()
+    signer = oci.auth.signers.get_resource_principals_signer()
     config = {'region': signer.region, 'tenancy': signer.tenancy_id}
     log( "AFTER SIGNER" )
 
