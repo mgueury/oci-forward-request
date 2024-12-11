@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: forward-dep
+  labels:
+      app: forward-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forward-app
+  template:
+    metadata:
+      labels:
+        app: forward-app
+    spec:
+      containers:
+      - name: app
+        image: ##DOCKER_PREFIX##/forward-app
+        ports:
+        - containerPort: 8080
+          name: app-port
+        env:        
+        - name: DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: forward-db-secret
+              key: db_url      
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: forward-db-secret
+              key: db_user
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: forward-db-secret
+              key: db_password
+#        - name: POD_IP
+#          valueFrom:
+#            fieldRef:
+#              fieldPath: status.podIP
+      imagePullSecrets:
+      - name: ocirsecret        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: forward-app-service
+spec:
+  selector:
+    app: forward-app
+  ports:
+  - name: http-service-port
+    protocol: TCP
+    port: 80
+    targetPort: app-port
+---
