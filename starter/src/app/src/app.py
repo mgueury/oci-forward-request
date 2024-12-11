@@ -5,6 +5,7 @@ from flask_cors import CORS
 import requests
 import oci
 from datetime import datetime
+import os
 
 # Flask
 app = Flask(__name__)
@@ -21,10 +22,11 @@ def log(s):
 @app.route('/20240531/<path:path>', methods=['POST'])
 def forward_request_post(path):
     global signer
-    log( "BEFORE SIGNER" )
-    signer = oci.auth.signers.get_resource_principals_signer()
-    config = {'region': signer.region, 'tenancy': signer.tenancy_id}
-    log( "AFTER SIGNER" )
+    api_key = request.headers.get('API_KEY')
+    os.getenv('DB_USER')
+
+    if api_key != os.getenv('API_KEY'):
+        return "ERROR", 401
 
     target_url = f'https://agent-runtime.generativeai.eu-frankfurt-1.oci.oraclecloud.com/20240531/{path}' 
     log( target_url )
@@ -61,6 +63,11 @@ def test2():
     log( "</test2>")
 
 # -- main -------------------------------------------------------------------
+
+log( "BEFORE SIGNER" )
+signer = oci.auth.signers.get_resource_principals_signer()
+config = {'region': signer.region, 'tenancy': signer.tenancy_id}
+log( "AFTER SIGNER" )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)  

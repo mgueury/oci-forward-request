@@ -16,6 +16,7 @@ resource oci_container_instances_container_instance starter_container_instance {
     image_url = var.docker_image_app
     is_resource_principal_disabled = "false"
     environment_variables = { 
+      "API_KEY" = "12345"
     }    
   }
   containers {
