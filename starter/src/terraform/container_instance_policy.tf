@@ -1,4 +1,20 @@
+# Default or OracleIdentityCloudService
+variable idcs_domain_name { default = "Default" }
+variable idcs_url { default = "" }
+
+resource "oci_identity_domains_dynamic_resource_group" "starter_ci_dyngroup" {
+  #Required
+  count          = (idcs_domain_name=="Default"?0:1) 
+  provider       = oci.home
+  display_name = "${var.prefix}-ci-dyngroup"
+  idcs_endpoint = local.idcs_url
+  matching_rule  = "ALL {resource.type='computecontainerinstance'}"
+  schemas = ["urn:ietf:params:scim:schemas:oracle:idcs:DynamicResourceGroup"]
+  freeform_tags = local.freeform_tags
+}
+
 resource "oci_identity_dynamic_group" "starter_ci_dyngroup" {
+  count          = (idcs_domain_name=="Default"?0:1) 
   provider       = oci.home    
   name           = "${var.prefix}-ci-dyngroup"
   description    = "Starter - All Container Instances"
