@@ -6,14 +6,6 @@ import requests
 import oci
 from datetime import datetime
 
-# Signer
-signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
-config = {'region': signer.region, 'tenancy': signer.tenancy_id}
-
-# Flask
-app = Flask(__name__)
-CORS(app)
-
 # -- log --------------------------------------------------------------------
 
 def log(s):
@@ -38,7 +30,7 @@ def forward_request_post(path):
 
 @app.route('/info', methods=['GET'])
 def info():
-    return "oci-forward-request"
+    return "OK"
 
 # -- test2 ------------------------------------------------------------------
 
@@ -61,6 +53,20 @@ def test2():
     log( "</test2>")
 
 # -- main -------------------------------------------------------------------
+
+log( "START" )
+
+# Signer
+signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+config = {'region': signer.region, 'tenancy': signer.tenancy_id}
+
+log( "AFTER SIGNER" )
+
+# Flask
+app = Flask(__name__)
+CORS(app)
+
+log( "AFTER FLASK" )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)  
