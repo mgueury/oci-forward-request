@@ -10,8 +10,6 @@ variable api_key {
     default="12345"
 } 
 
-${var.api_key}
-
 resource oci_container_instances_container_instance starter_container_instance {
   count = var.docker_image_ui == "" ? 0 : 1
   availability_domain = data.oci_identity_availability_domain.ad.name

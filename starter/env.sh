@@ -16,6 +16,7 @@ export TF_VAR_language="python"
 export TF_VAR_compartment_ocid="__TO_FILL__"
 # TF_VAR_auth_token : See doc: https://docs.oracle.com/en-us/iaas/Content/Registry/Tasks/registrygettingauthtoken.htm
 export TF_VAR_auth_token="__TO_FILL__"
+# export TF_VAR_idcs_domain_name="OracleIdentityCloudService"
 
 if [ -f $PROJECT_DIR/../group_common_env.sh ]; then
   . $PROJECT_DIR/../group_common_env.sh
