@@ -34,6 +34,12 @@ def forward_request_post(path):
     log(resp)
     return resp.content
 
+# -- info --------------------------------------------------------
+
+@app.route('/info', methods=['GET'])
+def info():
+    return "oci-forward-request"
+
 # -- test2 ------------------------------------------------------------------
 
 def test2():
