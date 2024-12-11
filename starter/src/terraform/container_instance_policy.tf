@@ -2,6 +2,17 @@
 variable idcs_domain_name { default = "Default" }
 variable idcs_url { default = "" }
 
+data "oci_identity_domains" "starter_domains" {
+    #Required
+    compartment_id = var.tenancy_ocid
+    display_name = var.idcs_domain_name
+}
+
+locals {
+  idcs_url = (var.idcs_url!="")?var.idcs_url:data.oci_identity_domains.starter_domains.domains[0].url
+}
+
+# IDCS
 resource "oci_identity_domains_dynamic_resource_group" "starter_ci_dyngroup" {
   #Required
   count          = (idcs_domain_name=="Default"?0:1) 
@@ -13,6 +24,7 @@ resource "oci_identity_domains_dynamic_resource_group" "starter_ci_dyngroup" {
   freeform_tags = local.freeform_tags
 }
 
+# Identity Domain
 resource "oci_identity_dynamic_group" "starter_ci_dyngroup" {
   count          = (idcs_domain_name=="Default"?1:0) 
   provider       = oci.home    
