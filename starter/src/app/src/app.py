@@ -23,12 +23,13 @@ def log(s):
 @app.route('/20240531/<path:path>', methods=['POST'])
 def forward_request_post(path):
     global signer
-    api_key = request.headers.get('API_KEY')
+    api_key = 'Key'
+    api_key_value = request.headers.get(api_key)
 
-    if api_key != os.getenv('API_KEY'):
+
+    if api_key_value != 'Key ' + os.getenv('API_KEY'):
         log( json.dumps(dict(request.headers), indent=4) ) 
-        log( "ERROR: " + os.getenv('API_KEY') )
-        return "ERROR: " + api_key, 401
+        return "ERROR" , 401
 
     target_url = f'https://agent-runtime.generativeai.eu-frankfurt-1.oci.oraclecloud.com/20240531/{path}' 
     log( target_url )
