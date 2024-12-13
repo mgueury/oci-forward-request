@@ -1,9 +1,10 @@
 # OCI Forward Request
 
+The goal is to allow Oracle Digital Assistant (SaaS) to use Oracle Generative AI Agent running in another tenancy. 
+
 The repository contains:
 - a program that convert API_KEY security to OCI Security
-- in the particular case of Oracle Generative AI Agent
-- the API that are accessible (if policy exists ) are the one of Oracle Generative AI Agent
+- in the particular case of the API Oracle Generative AI Agent
 
 ## Requirements
 
@@ -43,18 +44,18 @@ Answer the questions:
 
 Output looks like
 ```
------------------------------------------------------------------------
-APEX login:
+-- OCI Forward Request -------------------------------------------
+URL for Gen AI Agent: https://xxxx.apigateway.eu-frankfurt-1.oci.customer-oci.com/forward/app/20240531
 
-APEX Workspace
-http://11.22.33.44/ords/_/landing
-  Workspace: APEX_APP
-  User: APEX_APP
-  Password: <DB password>
+In Oracle Digital Assistant: add 2 REST API Services:
+- https://xxxx.apigateway.eu-frankfurt-1.oci.customer-oci.com/forward/app/20240531/agentEndpoints/{agentEndpointId}/sessions
+- https://xxxx.apigateway.eu-frankfurt-1.oci.customer-oci.com/forward/app/20240531/agentEndpoints/{agentEndpointId}/sessions/{sessionId}/actions/execute
 
-APEX APP
-http://11.22.33.44/ords/r/apex_app/apex_app/
-  User: dana.alhammadi@company.com / <DB password>
+For each of them
+- Authentication Type: API_KEY
+- Include as: Header
+- API_KEY Key : Key
+- API_KEY Value : 12345678
 ```
 
 ## Destroy
@@ -64,29 +65,10 @@ cd starter
 ./destroy.sh
 ```
 
-## Known issue
+## Known issues
 
-1. If you try to deploy the same installation, it can happens that some object have a unique name and the second installation will fail because of duplicate names.  
-  Work-around: 
-  - Edit the starter/env.sh file
-  - Set the TF_VAR_prefix to an unique value
+1. This works only if a policy is added to allow the Container Instance to manage GenAI Agent. Ex:
 
+   allow group Default/forward-ci-dyngroup to manage genai-agent-family in compartment xxxxx
 
-To build the solution: 
-- start a OCI Cloud Shell 
-    - in Public network 
-    - set Architecture to x86 - Intel/AMD
-- wget of this repository
-- unzip
-- cd oci-forward-request*
-- cd starter
-- edit the env.sh file and set a value to the KEY
-- run ./build.sh
-- The URL is given at the end
-
-Use it in Oracle Digital Assistant:
-
-https://
-
-To destroy
-- run ./destroy.sh
+2. If you call the API with wget / curl / postman, ... Key=Key / Value=Key 12345678
