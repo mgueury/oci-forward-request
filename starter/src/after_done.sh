@@ -1,4 +1,5 @@
-title "OCI Forward Request"
+echo
+echo "-- OCI Forward Request -------------------------------------------"
 echo
 echo URL for Gen AI Agent: $UI_URL/app/20240531
 echo
