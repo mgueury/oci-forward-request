@@ -14,26 +14,12 @@ ODA (SaaS) ----( API_KEY ) ---> APIGW (OCI) --> Container Instance ----( Resourc
 
 Resource principal uses an OCI Policy to get access to the OCI Generative AI Agent APIs.
 
-## Requirements
-
-Use Cloud Shell with Public Network.
-
-This setup assumes that you have access to OCI Cloud Shell with Public Network access. To check if you have it, start Cloud Shell and you should see Network: Public on the top. If not, try to change to Public Network. If it works, there is nothing to do.
-
-OCI Administrator have that right automatically. Or your administrator has maybe already added the required policy.
-
-#### Solution:
-  If not, please ask your Administrator to follow this document:
-  
-  https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellintro_topic-Cloud_Shell_Networking.htm#cloudshellintro_topic-Cloud_Shell_Public_Network
-
-   He/She just need to add a Policy to your tenancy :
-   ```
-   allow group <GROUP-NAME> to use cloud-shell-public-network in tenancy
-   ```
-
 ## Installation
-From OCI Cloud Shell with access to Public Network
+From OCI Cloud Shell with *Public Network* and *Architecture X86*
+
+- Double check that OCI Cloud shell uses:
+    - *Public Network* (for more info see Note 3 below)
+    - *Architecture* (see menu) X86 
 
 - Download
 ```
@@ -73,7 +59,7 @@ cd starter
 ./destroy.sh
 ```
 
-## Known issues
+## Notes
 
 1. This works only if a policy is added to allow the Container Instance to manage GenAI Agent. Ex:
    allow group Default/forward-ci-dyngroup to manage genai-agent-family in compartment xxxxx
