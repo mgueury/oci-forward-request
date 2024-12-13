@@ -3,14 +3,14 @@
 The goal is to allow Oracle Digital Assistant (SaaS) to use Oracle Generative AI Agent running in another tenancy. 
 
 The repository contains:
-- a program that convert API_KEY security to OCI Security
+- a program that converts API_KEY security to OCI Security
 - in the particular case of the API Oracle Generative AI Agent
 
 ## Requirements
 
-The lab is using Cloud Shell with Public Network.
+Use Cloud Shell with Public Network.
 
-The lab assume that you have access to OCI Cloud Shell with Public Network access. To check if you have it, start Cloud Shell and you should see Network: Public on the top. If not, try to change to Public Network. If it works, there is nothing to do.
+This setup assumes that you have access to OCI Cloud Shell with Public Network access. To check if you have it, start Cloud Shell and you should see Network: Public on the top. If not, try to change to Public Network. If it works, there is nothing to do.
 
 OCI Administrator have that right automatically. Or your administrator has maybe already added the required policy.
 
@@ -68,7 +68,15 @@ cd starter
 ## Known issues
 
 1. This works only if a policy is added to allow the Container Instance to manage GenAI Agent. Ex:
-
    allow group Default/forward-ci-dyngroup to manage genai-agent-family in compartment xxxxx
-
 2. If you call the API with wget / curl / postman, ... Key=Key / Value=Key 12345678
+3. Requirements: Use Cloud Shell with Public Network.
+  This setup assumes that you have access to OCI Cloud Shell with Public Network access. To check if you have it, start Cloud Shell and you should see Network: Public on the top. If not, try to change to Public Network. If it works, there is nothing to do.
+  OCI Administrator have that right automatically. Or your administrator has maybe already added the required policy.
+  **Solution:**
+  If not, please ask your Administrator to follow this document:
+  https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellintro_topic-Cloud_Shell_Networking.htm#cloudshellintro_topic-Cloud_Shell_Public_Network
+  He/She just need to add a Policy to your tenancy :
+  ```
+  allow group <GROUP-NAME> to use cloud-shell-public-network in tenancy
+  ```
