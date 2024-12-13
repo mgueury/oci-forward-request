@@ -11,4 +11,4 @@ echo - Include as: Header
 echo - API_KEY Key   : Key
 echo - API_KEY Value : $TF_VAR_api_key
 echo 
-echo Note: when testing from an HTTP Client (like wget/CURL/Postman...) use this API_KEY value: Key $TF_VAR_api_key
+echo "Note: when testing from an HTTP Client (like wget/CURL/Postman...) use this API_KEY value: Key $TF_VAR_api_key"
