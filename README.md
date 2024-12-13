@@ -26,7 +26,7 @@ From OCI Cloud Shell with *Public Network* and *Architecture X86*
 git clone https://github.com/mgueury/oci-forward-request.git
 cd oci-forward-request
 ```
-- Build (optional: edit file starter/env.sh to put your own password)
+- Build (optional: edit file starter/env.sh)
 ```
 cd starter
 ./build.sh
