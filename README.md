@@ -62,9 +62,11 @@ cd starter
 ## Notes
 
 1. This works only if a policy is added to allow the Container Instance to manage GenAI Agent. Ex:
+   ```
    allow group Default/forward-ci-dyngroup to manage genai-agent-family in compartment xxxxx
-2. If you call the API with wget / curl / postman, ... Key=Key / Value=Key 12345678
-3. Requirements: Use Cloud Shell with Public Network.
+   ```
+3. If you call the API with wget / curl / postman, ... Key=Key / Value=Key 12345678
+4. Requirements: Use Cloud Shell with Public Network.
    
     This setup assumes that you have access to OCI Cloud Shell with Public Network access. To check if you have it, start Cloud Shell and you should see Network: Public on the top. If not, try to change to Public Network. If it works, there is nothing to do.
    
