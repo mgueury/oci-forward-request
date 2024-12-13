@@ -8,7 +8,7 @@ The repository contains:
 
 ## Architecture
 
-Basically, it convert the security protocol from API_KEY to RESOURCE_PRINCIPAL and Policies
+This program converts the security protocol from API_KEY to RESOURCE_PRINCIPAL and Policies
 
 ODA (SaaS) ----( API_KEY ) ---> APIGW (OCI) --> Container Instance ----( Resource Principal )----> OCI Generative AI Agent
 
