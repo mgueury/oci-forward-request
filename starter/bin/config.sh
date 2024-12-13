@@ -108,6 +108,12 @@ if declare -p | grep -q "__TO_FILL__"; then
     store_env_sh TF_VAR_oic_appid $TF_VAR_oic_appid
   fi  
 
+  # API_KEY
+  if [ "$TF_VAR_api_key" == "__TO_FILL__" ]; then
+    read -r -p "Enter the value of the API_KEY (ex: MY_long_KEY_123456) ? (TF_VAR_api_key) " TF_VAR_api_key 
+    store_env_sh TF_VAR_api_key $TF_VAR_api_key
+  fi  
+
   # Livelabs Green Button (Autodetect compartment/vcn/subnet)
   livelabs_green_button
 
