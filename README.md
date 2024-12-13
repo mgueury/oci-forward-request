@@ -71,12 +71,12 @@ cd starter
    allow group Default/forward-ci-dyngroup to manage genai-agent-family in compartment xxxxx
 2. If you call the API with wget / curl / postman, ... Key=Key / Value=Key 12345678
 3. Requirements: Use Cloud Shell with Public Network.
-  This setup assumes that you have access to OCI Cloud Shell with Public Network access. To check if you have it, start Cloud Shell and you should see Network: Public on the top. If not, try to change to Public Network. If it works, there is nothing to do.
-  OCI Administrator have that right automatically. Or your administrator has maybe already added the required policy.
-  **Solution:**
-  If not, please ask your Administrator to follow this document:
-  https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellintro_topic-Cloud_Shell_Networking.htm#cloudshellintro_topic-Cloud_Shell_Public_Network
-  He/She just need to add a Policy to your tenancy :
-  ```
-  allow group <GROUP-NAME> to use cloud-shell-public-network in tenancy
-  ```
+    This setup assumes that you have access to OCI Cloud Shell with Public Network access. To check if you have it, start Cloud Shell and you should see Network: Public on the top. If not, try to change to Public Network. If it works, there is nothing to do.
+    OCI Administrator have that right automatically. Or your administrator has maybe already added the required policy.
+    **Solution:**
+    If not, please ask your Administrator to follow this document:
+    [https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellintro_topic-Cloud_Shell_Networking.htm#cloudshellintro_topic-Cloud_Shell_Public_Network](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/cloudshellintro_topic-Cloud_Shell_Networking.htm#cloudshellintro_topic-Cloud_Shell_Public_Network)
+    He/She just need to add a Policy to your tenancy :
+    ```
+    allow group <GROUP-NAME> to use cloud-shell-public-network in tenancy
+    ```
