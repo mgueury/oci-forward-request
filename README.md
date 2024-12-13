@@ -1,10 +1,18 @@
 # OCI Forward Request
 
-The goal is to allow Oracle Digital Assistant (SaaS) to use Oracle Generative AI Agent running in another tenancy. 
+The goal is to allow Oracle Digital Assistant - ODA (SaaS) to use Oracle Generative AI Agent running in another tenancy. 
 
 The repository contains:
 - a program that converts API_KEY security to OCI Security
 - in the particular case of the API Oracle Generative AI Agent
+
+## Architecture
+
+Basically, it convert the security protocol from API_KEY to RESOURCE_PRINCIPAL and Policies
+
+ODA (SaaS) ----( API_KEY ) ---> APIGW (OCI) --> Container Instance ----( Resource Principal )----> OCI Generative AI Agent
+
+Resource principal uses an OCI Policy to get access to the OCI Generative AI Agent APIs.
 
 ## Requirements
 
