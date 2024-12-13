@@ -22,10 +22,13 @@ def log(s):
 
 @app.route('/20240531/<path:path>', methods=['POST'])
 def forward_request_post(path):
-    global signer
+    log( "BEFORE SIGNER" )
+    signer = oci.auth.signers.get_resource_principals_signer()
+    config = {'region': signer.region, 'tenancy': signer.tenancy_id}
+    log( "AFTER SIGNER" )
+
     api_key = 'Key'
     api_key_value = request.headers.get(api_key)
-
 
     if api_key_value != 'Key ' + os.getenv('API_KEY'):
         log( json.dumps(dict(request.headers), indent=4) ) 
@@ -66,11 +69,6 @@ def test2():
     log( "</test2>")
 
 # -- main -------------------------------------------------------------------
-
-log( "BEFORE SIGNER" )
-signer = oci.auth.signers.get_resource_principals_signer()
-config = {'region': signer.region, 'tenancy': signer.tenancy_id}
-log( "AFTER SIGNER" )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)  
