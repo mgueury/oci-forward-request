@@ -10,7 +10,7 @@ The repository contains:
 
 This program converts the security protocol from API_KEY to RESOURCE_PRINCIPAL and Policies
 
-![Architecture ODA-GENAIAGENT](architecture.png)
+![Architecture ODA-GENAIAGENT](oci_forward_architecture.png)
 
 Resource principal uses an OCI Policy to get access to the OCI Generative AI Agent APIs.
 
