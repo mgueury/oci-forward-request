@@ -10,7 +10,7 @@ The repository contains:
 
 This program converts the security protocol from API_KEY to RESOURCE_PRINCIPAL and Policies
 
-ODA (SaaS) ----( API_KEY ) ---> APIGW (OCI) --> Container Instance ----( Resource Principal )----> OCI Generative AI Agent
+[architecture.png]
 
 Resource principal uses an OCI Policy to get access to the OCI Generative AI Agent APIs.
 
