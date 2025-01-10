@@ -28,7 +28,6 @@ def forward_request_post(path):
     signer = oci.auth.signers.get_resource_principals_signer()
     config = {'region': signer.region, 'tenancy': signer.tenancy_id}
     log( "AFTER SIGNER" )
-    log( json.dumps(dict(request.headers), indent=4) ) 
     
     api_key = 'Key'
     api_key_value = request.headers.get(api_key)
