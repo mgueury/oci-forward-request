@@ -19,7 +19,9 @@ From OCI Cloud Shell with *Public Network* and *Architecture X86*
 
 - Double check that OCI Cloud shell uses:
     - *Public Network* (for more info see Note 3 below)
-    - *Architecture* (see menu) X86 
+    - *Architecture* X86_64
+
+![OCI Shell](oci_shell_public_architecture_x86.png)
 
 - Download
 ```
