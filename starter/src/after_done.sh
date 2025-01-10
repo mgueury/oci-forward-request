@@ -3,7 +3,7 @@ echo "-- CURL TEST COMMAND --------------------------------------------------"
 echo "curl -i \\"
 echo "     --request POST \\"
 echo "     --header \"Content-Type: application/json\" \\"
-echo "     --header \"Key: $TF_VAR_api_key\" \\"
+echo "     --header \"Key: Key $TF_VAR_api_key\" \\"
 echo "     --data '{\"idleTimeoutInSeconds\": \"3600\"}' \\"
 echo "     $UI_URL/app/20240531/agentEndpoints/{agentEndpointId}/sessions"
 echo
