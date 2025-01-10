@@ -1,9 +1,10 @@
 echo
 echo "-- CURL TEST COMMAND --------------------------------------------------"
 echo "curl -i \\"
-echo "    -X POST \\"
-echo "    -H "Key: $TF_VAR_api_key" \\"
-echo "     -d '{\"idleTimeoutInSeconds\": 3600}'\\"
+echo "     --request POST \\"
+echo "     --header \"Content-Type: application/json\" \\"
+echo "     --header \"Key: $TF_VAR_api_key\" \\"
+echo "     --data '{\"idleTimeoutInSeconds\": \"3600\"}'\\"
 echo "     $UI_URL/app/20240531/agentEndpoints/{agentEndpointId}/sessions"
 echo
 echo "-- OCI Forward Request ------------------------------------------------"
