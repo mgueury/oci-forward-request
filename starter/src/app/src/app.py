@@ -12,6 +12,8 @@ import json
 app = Flask(__name__)
 CORS(app)
 
+region = "eu-frankfurt-1"
+
 # -- log --------------------------------------------------------------------
 
 def log(s):
@@ -34,7 +36,7 @@ def forward_request_post(path):
         log( json.dumps(dict(request.headers), indent=4) ) 
         return "ERROR" , 401
 
-    target_url = f'https://agent-runtime.generativeai.eu-frankfurt-1.oci.oraclecloud.com/20240531/{path}' 
+    target_url = f'https://agent-runtime.generativeai.{region}.oci.oraclecloud.com/20240531/{path}' 
     log( target_url )
 
     log("forward_request="+str(request.json)) 
@@ -48,13 +50,14 @@ def forward_request_post(path):
 def info():
     return "OK"
 
-# -- test2 ------------------------------------------------------------------
+# -- test ------------------------------------------------------------------
+# Test using OCI SDK GenerativeAiAgentRuntimeClient
 
-def test2():
+def test():
     # OK
     global signer
     log( "<test2>")
-    endpoint = 'https://agent-runtime.generativeai.eu-frankfurt-1.oci.oraclecloud.com'
+    endpoint = 'https://agent-runtime.generativeai.{region}.oci.oraclecloud.com'
     endpoint_id= "ocid1.genaiagentendpoint.oc1.eu-frankfurt-1.xxxxxxx"
     client = oci.generative_ai_agent_runtime.GenerativeAiAgentRuntimeClient(config = {}, service_endpoint=endpoint, signer=signer)  
     session_details = oci.generative_ai_agent_runtime.models.CreateSessionDetails(
