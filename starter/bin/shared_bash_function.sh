@@ -94,7 +94,7 @@ ocir_docker_push () {
   docker push ${DOCKER_PREFIX}/${TF_VAR_prefix}-app:latest
   exit_on_error
 
-  if [ "$TF_VAR_ui_type" != "none" && "$TF_VAR_ui_type" != "api" ]; then
+  if [ "$TF_VAR_ui_type" != "none" ] && [ "$TF_VAR_ui_type" != "api" ]; then
     docker tag ${TF_VAR_prefix}-ui ${DOCKER_PREFIX}/${TF_VAR_prefix}-ui:latest
     docker push ${DOCKER_PREFIX}/${TF_VAR_prefix}-ui:latest
     exit_on_error
