@@ -19,8 +19,8 @@ resource "oci_identity_policy" "starter-ci_policy" {
   description    = "Container instance access to OCIR"
   compartment_id = var.tenancy_ocid
   statements = [
-    "allow any-user to read repos in tenancy where ALL {request.resource.type='computecontainerinstance'}",
-    "allow any-user to manage genai-agent-family in tenancy where ALL {request.resource.type='computecontainerinstance'}"
+    "allow any-user to read repos in tenancy where ALL {resource.type='computecontainerinstance'}",
+    "allow any-user to manage genai-agent-family in tenancy where ALL {resource.type='computecontainerinstance'}"
   ]
   freeform_tags = local.freeform_tags
 }
