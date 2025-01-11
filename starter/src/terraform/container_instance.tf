@@ -1,7 +1,3 @@
-variable docker_image_ui {
-    default=""
-}
-
 variable docker_image_app {
     default=""
 } 
@@ -11,7 +7,7 @@ variable api_key {
 } 
 
 resource oci_container_instances_container_instance starter_container_instance {
-  count = var.docker_image_ui == "" ? 0 : 1
+  count = var.docker_image_app == "" ? 0 : 1
   availability_domain = data.oci_identity_availability_domain.ad.name
   compartment_id      = local.lz_appdev_cmp_ocid  
   container_restart_policy = "ALWAYS"
@@ -22,12 +18,7 @@ resource oci_container_instances_container_instance starter_container_instance {
     environment_variables = { 
       "API_KEY" = "${var.api_key}"
     }    
-  }
-  containers {
-    display_name = "ui"
-    image_url = var.docker_image_ui
-    is_resource_principal_disabled = "false"
-  }  
+  } 
   display_name = "${var.prefix}-ci"
   graceful_shutdown_timeout_in_seconds = "0"
   shape                                = "CI.Standard.E4.Flex"  
