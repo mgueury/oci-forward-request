@@ -40,6 +40,14 @@ Answer the questions:
 
 Output looks like
 ```
+-- CURL TEST COMMAND --------------------------------------------------
+curl -i \
+     --request POST \
+     --header "Content-Type: application/json" \
+     --header "Key: Key 12345678" \
+     --data '{"idleTimeoutInSeconds": "3600"}' \
+     https://xxxx.apigateway.eu-frankfurt-1.oci.customer-oci.com/forward/app/20240531/agentEndpoints/{agentEndpointId}/sessions
+
 -- OCI Forward Request -------------------------------------------
 URL for Gen AI Agent: https://xxxx.apigateway.eu-frankfurt-1.oci.customer-oci.com/forward/app/20240531
 
