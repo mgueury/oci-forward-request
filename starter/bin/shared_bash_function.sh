@@ -94,9 +94,11 @@ ocir_docker_push () {
   docker push ${DOCKER_PREFIX}/${TF_VAR_prefix}-app:latest
   exit_on_error
 
-  docker tag ${TF_VAR_prefix}-ui ${DOCKER_PREFIX}/${TF_VAR_prefix}-ui:latest
-  docker push ${DOCKER_PREFIX}/${TF_VAR_prefix}-ui:latest
-  exit_on_error
+  if [ "$TF_VAR_ui_type" != "none" && "$TF_VAR_ui_type" != "api" ]; then
+    docker tag ${TF_VAR_prefix}-ui ${DOCKER_PREFIX}/${TF_VAR_prefix}-ui:latest
+    docker push ${DOCKER_PREFIX}/${TF_VAR_prefix}-ui:latest
+    exit_on_error
+  fi
 }
 
 replace_db_user_password_in_file() {
