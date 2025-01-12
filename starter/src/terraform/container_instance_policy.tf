@@ -12,7 +12,6 @@ locals {
   idcs_url = (var.idcs_url!="")?var.idcs_url:data.oci_identity_domains.starter_domains.domains[0].url
 }
 
-/*
 # IDCS
 resource "oci_identity_domains_dynamic_resource_group" "starter_ci_dyngroup" {
   #Required
@@ -46,7 +45,7 @@ resource "oci_identity_policy" "starter-ci_policy" {
   ]
   freeform_tags = local.freeform_tags
 }
-*/
+/*
 resource "oci_identity_policy" "starter-ci_policy" {
   provider       = oci.home
   name           = "${var.prefix}-ci-policy"
@@ -58,5 +57,4 @@ resource "oci_identity_policy" "starter-ci_policy" {
   ]
   freeform_tags = local.freeform_tags
 }
-
-// request.principal.type =
+*/
