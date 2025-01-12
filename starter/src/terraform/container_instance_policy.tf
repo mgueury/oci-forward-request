@@ -12,6 +12,7 @@ locals {
   idcs_url = (var.idcs_url!="")?var.idcs_url:data.oci_identity_domains.starter_domains.domains[0].url
 }
 
+/*
 # IDCS
 resource "oci_identity_domains_dynamic_resource_group" "starter_ci_dyngroup" {
   #Required
@@ -40,8 +41,22 @@ resource "oci_identity_policy" "starter-ci_policy" {
   description    = "Container instance access to OCIR"
   compartment_id = var.tenancy_ocid
   statements = [
-    "allow dynamic-group ${var.idcs_domain_name}/${var.prefix}-ci-dyngroup to read repos in tenancy",
+    "allow dynamic-group ${var.idcs_domain_name}/${var.prefix}-ci-dyngroup to read repos in tenancy ",
     "allow dynamic-group ${var.idcs_domain_name}/${var.prefix}-ci-dyngroup to manage genai-agent-family in tenancy"
   ]
   freeform_tags = local.freeform_tags
 }
+*/
+resource "oci_identity_policy" "starter-ci_policy" {
+  provider       = oci.home
+  name           = "${var.prefix}-ci-policy"
+  description    = "Container instance access to OCIR"
+  compartment_id = var.tenancy_ocid
+  statements = [
+    "allow any-user to read repos in tenancy where request.principal.type='computecontainerinstance'",
+    "allow any-user to manage genai-agent-family in tenancy where request.principal.type='computecontainerinstance'"
+  ]
+  freeform_tags = local.freeform_tags
+}
+
+// request.principal.type =
