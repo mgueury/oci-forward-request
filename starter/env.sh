@@ -7,7 +7,7 @@ export TF_VAR_prefix="forward"
 
 export TF_VAR_api_key="__TO_FILL__"
 # export TF_VAR_api_key="12345"
-export TF_VAR_ui_type="html"
+export TF_VAR_ui_type="none"
 export TF_VAR_db_type="none"
 export TF_VAR_license_model="LICENSE_INCLUDED"
 export TF_VAR_oke_type="managed"
