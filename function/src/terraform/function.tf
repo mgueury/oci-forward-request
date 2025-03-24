@@ -62,7 +62,7 @@ resource "oci_functions_function" "starter_fn_function" {
   # To start faster
   provisioned_concurrency_config {
     strategy = "CONSTANT"
-    count = 40
+    count = 20
   }    
 }
 
