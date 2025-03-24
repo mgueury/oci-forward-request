@@ -28,9 +28,9 @@ From OCI Cloud Shell with *Public Network* and *Architecture X86*
 git clone https://github.com/mgueury/oci-forward-request.git
 cd oci-forward-request
 ```
-- Build (optional: edit file starter/env.sh)
+- Build (optional: edit file container/env.sh)
 ```
-cd starter
+cd container
 ./build.sh
 Answer the questions: 
 - Compartment ocid
