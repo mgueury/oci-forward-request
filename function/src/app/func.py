@@ -16,13 +16,12 @@ def log(s):
 # -- handler -----------------------------------------------------------------
 
 def handler(ctx, data: io.BytesIO = None):
-    
-    agent_endpoint_ocid = os.getenv('TF_VAR_agent_endpoint_ocid')
-    tenancy_ocid = os.getenv('TF_VAR_tenancy_ocid')
-    region = os.getenv('TF_VAR_region')
-    log( "agent_endpoint_ocid="+agent_endpoint_ocid );
-    log( "tenancy_ocid=" + tenancy_ocid );
-    log( "region="+region );
+    # agent_endpoint_ocid = os.getenv('TF_VAR_agent_endpoint_ocid')
+    # tenancy_ocid = os.getenv('TF_VAR_tenancy_ocid')
+    # region = os.getenv('TF_VAR_region')
+    # log( "agent_endpoint_ocid=" + agent_endpoint_ocid );
+    # log( "tenancy_ocid=" + tenancy_ocid );
+    # log( "region=" + region );
 
     name = "World"
     try:

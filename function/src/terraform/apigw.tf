@@ -61,22 +61,27 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
       }
     }
     routes {
-      path    = "/app/dept"
+      path    = "/20240531/{pathname*}"
       methods = [ "ANY" ]
       backend {
         type = "ORACLE_FUNCTIONS_BACKEND"
         function_id   = oci_functions_function.starter_fn_function[0].id
+        connect_timeout_in_seconds = 60
+        read_timeout_in_seconds = 120
+        send_timeout_in_seconds = 120           
       }
-    }    
+    }  
     routes {
-      path    = "/app/info"
+      path    = "/app/{pathname*}"
       methods = [ "ANY" ]
       backend {
-        type = "STOCK_RESPONSE_BACKEND"
-        body   = "Function ${var.language}"
-        status = 200
+        type = "ORACLE_FUNCTIONS_BACKEND"
+        function_id   = oci_functions_function.starter_fn_function[0].id
+        connect_timeout_in_seconds = 60
+        read_timeout_in_seconds = 120
+        send_timeout_in_seconds = 120           
       }
-    }    
+    }         
     routes {
       path    = "/"
       methods = [ "ANY" ]
