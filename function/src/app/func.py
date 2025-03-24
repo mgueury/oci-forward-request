@@ -36,14 +36,14 @@ def handler(ctx, data: io.BytesIO = None):
     config = {'region': signer.region, 'tenancy': signer.tenancy_id}
     log( "AFTER SIGNER" )
 
-    api_key = 'Key'
+    api_key = 'key'
     api_key_value = ctx.Headers().get(api_key)
+    log( "key=" + key )
     path=ctx.RequestURL()
 
     # if api_key_value != 'Key ' + os.getenv('API_KEY'):
     #    log( json.dumps(dict(request.headers), indent=4) ) 
     #    return "ERROR" , 401
-
 
     target_url = f'https://agent-runtime.generativeai.{signer.region}.oci.oraclecloud.com/20240531/{path}' 
     log( target_url )    
@@ -52,6 +52,18 @@ def handler(ctx, data: io.BytesIO = None):
     # log(resp)
     # return resp.content
 
+    return response.Response(
+        ctx, response_data=json.dumps(
+            {"api_key" : api_key,
+            "path" : path,
+            "target_url" : target_url,
+            "ctx.Headers": ctx.Headers()},            
+            sort_keys=True, indent=4),
+        headers={"Content-Type": "application/json"}
+    )
+
+
+    """
     return response.Response(
         ctx, response_data=json.dumps(
             {"Message": "Hello {0}".format(name),
@@ -68,7 +80,7 @@ def handler(ctx, data: io.BytesIO = None):
         headers={"Content-Type": "application/json"}
     )
 
-"""
+
     log( "BEFORE SIGNER" )
     signer = SignatureProvider.create_with_resource_principal()        
     # signer = oci.auth.signers.get_resource_principals_signer()
