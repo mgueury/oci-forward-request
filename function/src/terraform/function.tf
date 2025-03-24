@@ -78,9 +78,9 @@ resource "oci_identity_policy" "starter_fn_policy" {
   compartment_id = local.lz_app_cmp_ocid
   statements = [
     # "ALLOW any-user to use functions-family in compartment id ${local.lz_app_cmp_ocid} where ALL {request.principal.type= 'ApiGateway', request.resource.compartment.id = '${local.lz_app_cmp_ocid}'}"
-    "ALLOW any-user to use functions-family in compartment id ${local.lz_app_cmp_ocid} where ALL {request.principal.type= 'ApiGateway'}"
+    "ALLOW any-user to use functions-family in compartment id ${local.lz_app_cmp_ocid} where ALL {request.principal.type= 'ApiGateway'}",
+    "allow any-user to manage genai-agent-family in compartment id ${local.lz_serv_cmp_ocid}"
   ]
-
   freeform_tags = local.freeform_tags
 }
 
