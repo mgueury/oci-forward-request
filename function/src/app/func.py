@@ -49,10 +49,11 @@ def handler(ctx, data: io.BytesIO = None):
     target_url = f'https://agent-runtime.generativeai.{signer.region}.oci.oraclecloud.com/{path}' 
     log( target_url )    
 
-    # resp = requests.post(target_url, json=request.json, auth=signer)
-    # log(resp)
-    # return resp.content
+    resp = requests.post(target_url, json=body, auth=signer)
+    log(resp)
+    return resp.content
 
+"""
     return response.Response(
         ctx, response_data=json.dumps(
             {"api_key_value" : api_key_value,
@@ -63,7 +64,6 @@ def handler(ctx, data: io.BytesIO = None):
         headers={"Content-Type": "application/json"}
     )
 
-    """
     return response.Response(
         ctx, response_data=json.dumps(
             {"Message": "Hello {0}".format(name),
