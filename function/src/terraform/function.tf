@@ -37,6 +37,9 @@ locals {
 }
 variable "fn_image" { default = "" }
 variable "fn_db_url" { default = "" } 
+variable api_key {
+    default="12345"
+} 
 
 resource "oci_functions_function" "starter_fn_function" {
   #Required
@@ -46,9 +49,7 @@ resource "oci_functions_function" "starter_fn_function" {
   image          = var.fn_image
   memory_in_mbs  = "2048"
   config = {     
-    DB_URL      = var.fn_db_url,     
-    DB_USER     = var.db_user,
-    DB_PASSWORD = var.db_password,     
+    API_KEY     = var.api_key
   }
   #Optional
   timeout_in_seconds = "300"
