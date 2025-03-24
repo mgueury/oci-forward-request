@@ -40,7 +40,7 @@ def handler(ctx, data: io.BytesIO = None):
     api_key_value = ctx.Headers().get(api_key)
     log( "api_key_value=" + api_key_value )
     path=ctx.RequestURL()
-    path=path[:path.index("/20240531")]
+    path=path[path.index("20240531"):]
 
     if api_key_value != 'Key ' + os.getenv('API_KEY'):
         log( json.dumps(ctx.Headers(), indent=4) ) 
