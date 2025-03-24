@@ -28,10 +28,17 @@ From OCI Cloud Shell with *Public Network* and *Architecture X86*
 git clone https://github.com/mgueury/oci-forward-request.git
 cd oci-forward-request
 ```
-- Build (optional: edit file container/env.sh)
+- Choose OCI Function or Container Instance
 ```
+cd function
+or 
 cd container
-./build.sh
+```
+
+- Build (optional: edit file container/env.sh)
+
+```
+./starter.sh build
 Answer the questions: 
 - Compartment ocid
 - Auth Token (To create a docker image in the Container Registry)
