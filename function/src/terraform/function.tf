@@ -58,11 +58,13 @@ resource "oci_functions_function" "starter_fn_function" {
 
   freeform_tags = local.freeform_tags
 
+  /*
   # To start faster
   provisioned_concurrency_config {
     strategy = "CONSTANT"
     count = 40
   }    
+  */
 }
 
 output "fn_url" {
