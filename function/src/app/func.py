@@ -40,12 +40,13 @@ def handler(ctx, data: io.BytesIO = None):
     api_key_value = ctx.Headers().get(api_key)
     log( "api_key_value=" + api_key_value )
     path=ctx.RequestURL()
+    path=path[:path.index("/20240531")]
 
     if api_key_value != 'Key ' + os.getenv('API_KEY'):
         log( json.dumps(ctx.Headers(), indent=4) ) 
         return "ERROR" , 401
 
-    target_url = f'https://agent-runtime.generativeai.{signer.region}.oci.oraclecloud.com/20240531/{path}' 
+    target_url = f'https://agent-runtime.generativeai.{signer.region}.oci.oraclecloud.com/{path}' 
     log( target_url )    
 
     # resp = requests.post(target_url, json=request.json, auth=signer)
@@ -54,7 +55,7 @@ def handler(ctx, data: io.BytesIO = None):
 
     return response.Response(
         ctx, response_data=json.dumps(
-            {"api_key" : api_key,
+            {"api_key_value" : api_key_value,
             "path" : path,
             "target_url" : target_url,
             "ctx.Headers": ctx.Headers()},            
