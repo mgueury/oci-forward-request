@@ -47,7 +47,7 @@ resource "oci_functions_function" "starter_fn_function" {
   application_id = local.fnapp_ocid
   display_name   = "${var.prefix}-fn-function"
   image          = var.fn_image
-  memory_in_mbs  = "2048"
+  memory_in_mbs  = "128"
   config = {     
     API_KEY     = var.api_key
   }
