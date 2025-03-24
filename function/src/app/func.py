@@ -38,7 +38,7 @@ def handler(ctx, data: io.BytesIO = None):
 
     api_key = 'key'
     api_key_value = ctx.Headers().get(api_key)
-    log( "key=" + key )
+    log( "api_key_value=" + api_key_value )
     path=ctx.RequestURL()
 
     # if api_key_value != 'Key ' + os.getenv('API_KEY'):
@@ -61,7 +61,6 @@ def handler(ctx, data: io.BytesIO = None):
             sort_keys=True, indent=4),
         headers={"Content-Type": "application/json"}
     )
-
 
     """
     return response.Response(
