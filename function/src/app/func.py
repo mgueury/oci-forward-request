@@ -18,7 +18,6 @@ def handler(ctx, data: io.BytesIO = None):
     try:
         body = json.loads(data.getvalue())
         log("body="+body) 
-        name = body.get("name")
     except (Exception, ValueError) as ex:
         log(str(ex))
 
@@ -30,13 +29,12 @@ def handler(ctx, data: io.BytesIO = None):
     api_key = 'key'
     api_key_value = ctx.Headers().get(api_key)
     log( "api_key_value=" + api_key_value )
-    path=ctx.RequestURL()
-    path=path[path.index("20240531"):]
-
     if api_key_value != 'Key ' + os.getenv('API_KEY'):
         log( json.dumps(ctx.Headers(), indent=4) ) 
         return "ERROR" , 401
 
+    path=ctx.RequestURL()
+    path=path[path.index("20240531"):]
     target_url = f'https://agent-runtime.generativeai.{signer.region}.oci.oraclecloud.com/{path}' 
     log( target_url )    
 
