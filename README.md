@@ -76,6 +76,30 @@ cd starter
 ./destroy.sh
 ```
 
+## OIC
+
+There is also a OIC project doing the same:
+
+- import the project
+- create policy like this:
+
+```
+ex: allow any-user to manage generative-ai-family in compartment xxxx where resource.id = 'XXXXX_APPID'
+ex: allow any-user to manage genai-agent-family in compartment xxxx where resource.id = 'XXXXX_APPID'
+````
+
+- To get the XXXXX_APPID
+    - Go to Identity and Security / Domain / Oracle Cloud Services
+    - You OIC3 Instance - Integration cloud
+    - Take note of the ##Client ID## -> XXXXX_APPID
+    - Take note of the ##Client Secret##
+
+- The URL in ODA looks like this:
+   Create Session: https://xxxxxx-fr.integration.eu-frankfurt-1.ocp.oraclecloud.com/ic/api/integration/v2/flows/rest/project/HQAIAGENT/AGENTCREATESESSIONAPI/1.0/session
+   Call Agent: https://xxxxxx-fr.integration.eu-frankfurt-1.ocp.oraclecloud.com/ic/api/integration/v2/flows/rest/project/HQAIAGENT/AGENTEXECUTEAPI/1.0/callAgent/{sessionId}
+   user: ##Client ID## 
+   password: ##Client Secret##
+
 ## Notes
 
 1. This works only if a policy is added to allow the Container Instance to manage GenAI Agent. Ex:

@@ -82,25 +82,6 @@ resource "oci_apigateway_deployment" "starter_apigw_deployment" {
         send_timeout_in_seconds = 120           
       }
     }         
-    routes {
-      path    = "/"
-      methods = [ "ANY" ]
-      backend {
-        type = "HTTP_BACKEND"
-        url    = "${local.bucket_url}/index.html"
-        connect_timeout_in_seconds = 10
-        read_timeout_in_seconds = 30
-        send_timeout_in_seconds = 30
-      }
-    }    
-    routes {
-      path    = "/{pathname*}"
-      methods = [ "ANY" ]
-      backend {
-        type = "HTTP_BACKEND"
-        url    = "${local.bucket_url}/$${request.path[pathname]}"
-      }
-    }
   }
   freeform_tags = local.api_tags
 }

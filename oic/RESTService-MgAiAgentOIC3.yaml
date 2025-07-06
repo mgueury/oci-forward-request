@@ -1,0 +1,13 @@
+exportedRestServices:
+- endpoint: "https://xxxxxx-fr.integration.eu-frankfurt-1.ocp.oraclecloud.com/ic/api/integration/v2/flows/rest/project/HQAIAGENT/AGENTCREATESESSIONAPI/1.0/session"
+  name: "MgAiAgentOIC3"
+  type: "REST"
+  authType: "basicAuth"
+  mock: false
+  restServiceMethods:
+  - restServiceMethodType: "POST"
+    contentType: "application/json"
+    statusCode: 200
+    requestBody: "{\n    \"idleTimeoutInSeconds\": 3600\n}"
+    mockResponsePayload: "xxxx"
+    restServiceParams: []

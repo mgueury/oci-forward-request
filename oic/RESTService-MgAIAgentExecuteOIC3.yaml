@@ -1,0 +1,16 @@
+exportedRestServices:
+- endpoint: "https://xxxxxx-fr.integration.eu-frankfurt-1.ocp.oraclecloud.com/ic/api/integration/v2/flows/rest/project/HQAIAGENT/AGENTEXECUTEAPI/1.0/callAgent/{sessionId}"
+  name: "MgAIAgentExecuteOIC3"
+  type: "REST"
+  authType: "basicAuth"
+  mock: false
+  restServiceMethods:
+  - restServiceMethodType: "POST"
+    contentType: "application/json"
+    statusCode: 200
+    requestBody: "{\n    \"userMessage\": \"Your question related to the agent created\",\n    \"shouldStream\": false\n}"
+    mockResponsePayload: "xxxx"
+    restServiceParams:
+    - type: "path"
+      key: "sessionId"
+      value: "ocid1.genaiagentsession.oc1.eu-frankfurt-1.amaaaaaa7mjirbaazrcd2ggpoclnz4gv5yrkcvamkfilt3hxaezvjhrqgela"
