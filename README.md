@@ -94,13 +94,13 @@ ex: allow any-user to manage generative-ai-family in compartment xxxx where reso
 ex: allow any-user to manage genai-agent-family in compartment xxxx where resource.id = 'XXXXX_APPID'
 ````
 
-- In the OIC directory, there are also2 samples APIs that you can import in ODA. The URL of these 2 APIs looks like this:
+- In the OIC directory, there are also 2 samples APIs that you can import in ODA. The URL of these 2 APIs looks like this:
     - Create Session: https://xxxxxx-fr.integration.eu-frankfurt-1.ocp.oraclecloud.com/ic/api/integration/v2/flows/rest/project/HQAIAGENT/AGENTCREATESESSIONAPI/1.0/session
     - Call Agent: https://xxxxxx-fr.integration.eu-frankfurt-1.ocp.oraclecloud.com/ic/api/integration/v2/flows/rest/project/HQAIAGENT/AGENTEXECUTEAPI/1.0/callAgent/{sessionId}
 - For the 2 APIs, you need to configure Basic Authentication and give user + password: 
-    - user: ##Client ID## 
-    - password: ##Client Secret##
-    - Todo: double-check, if it does not work, look OIC documentation to create a Oracle Identity Domain user who has right to call OIC APIs.
+    - Create a Oracle Identity Domain 'integrated application', then add go to Oracle Cloud Service (OIC name) and add right to the Integrated App.
+    - Use the integrated App Client ID and Client Secret as user / password. 
+    - Todo: find the OIC doc that explains it
 
 ## Notes
 
