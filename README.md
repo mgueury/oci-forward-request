@@ -102,6 +102,22 @@ ex: allow any-user to manage genai-agent-family in compartment xxxx where resour
     - Use the integrated App Client ID and Client Secret as user / password. 
     - Todo: find the OIC doc that explains it
 
+## Policies
+
+- Where the ODA instance is hosted, add the rules:
+   ```
+   endorse any-user to manage agent-family in any-tenancy where request.principal.type='odainstance'
+   endorse any-user to manage genai-agent-family in any-tenancy where request.principal.type='odainstance'
+   endorse any-user to manage object-family in any-tenancy where request.principal.type='odainstance'
+   ```
+ 
+- Where the Gen AI Service is hosted, add the rules
+    ```
+    admit any-user of tenancy oda-instance-tenancy to manage agent-family in tenancy where request.principal.id in ('ocid1.tenancy.oc1..xxxxx')
+    admit any-user of tenancy oda-instance-tenancy to manage genai-agent-family in tenancy where request.principal.id in ('ocid1.odainstance.oc1.eu-frankfurt-1.xxxxx')
+    admit any-user of tenancy oda-instance-tenancy to manage object-family in tenancy where request.principal.id in ('ocid1.odainstance.oc1.eu-frankfurt-1.xxxx’)
+    ```
+
 ## Notes
 
 1. This works only if a policy is added to allow the Container Instance to manage GenAI Agent. Ex:
