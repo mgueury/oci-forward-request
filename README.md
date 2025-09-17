@@ -113,7 +113,8 @@ ex: allow any-user to manage genai-agent-family in compartment xxxx where resour
  
 - Where the Gen AI Service is hosted, add the rules
     ```
-    admit any-user of tenancy oda-instance-tenancy to manage agent-family in tenancy where request.principal.id in ('ocid1.tenancy.oc1..xxxxx')
+    define tenancy oda-instance-tenancy as ocid1.tenancy.oc1..xxxxx
+    admit any-user of tenancy oda-instance-tenancy to manage agent-family in tenancy where request.principal.id in ('ocid1.odainstance.oc1.eu-frankfurt-1.xxxxx')
     admit any-user of tenancy oda-instance-tenancy to manage genai-agent-family in tenancy where request.principal.id in ('ocid1.odainstance.oc1.eu-frankfurt-1.xxxxx')
     admit any-user of tenancy oda-instance-tenancy to manage object-family in tenancy where request.principal.id in ('ocid1.odainstance.oc1.eu-frankfurt-1.xxxx’)
     ```
