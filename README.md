@@ -1,6 +1,12 @@
 # OCI Forward Request
 
-The goal is to allow Oracle Digital Assistant - ODA (SaaS) to use Oracle Generative AI Agent running in another tenancy. 
+The goal is to allow Oracle Digital Assistant - ODA (SaaS) to use Oracle Generative AI Agent running in another tenancy.
+- Using OCI Functions
+- Or OCI Container Instance
+
+Other ways are described below:
+- Oracle Integration Cloud
+- OCI Cross Tenancy Policies
 
 The repository contains:
 - a program that converts API_KEY security to OCI Security
@@ -102,8 +108,13 @@ ex: allow any-user to manage genai-agent-family in compartment xxxx where resour
     - Use the integrated App Client ID and Client Secret as user / password. 
     - Todo: find the OIC doc that explains it
 
-## Policies
+## OCI Cross Tenancy Policies
 
+Another way to enable ODA to call OCI Generative AI is to define OCI Cross tenancies Policies. In 2 parts,
+- where ODA Instance is hosted
+- where the GenAI Service is hosted.
+
+In OCI Console, go to Identity and Security, Policies. Then add these policies:
 - Where the ODA instance is hosted, add the rules:
    ```
    endorse any-user to manage agent-family in any-tenancy where request.principal.type='odainstance'
