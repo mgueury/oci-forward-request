@@ -110,7 +110,7 @@ ex: allow any-user to manage genai-agent-family in compartment xxxx where resour
 
 ## OCI Cross Tenancy Policies
 
-Another way to enable ODA to call OCI Generative AI is to define OCI Cross tenancies Policies. In 2 parts,
+Another way to enable ODA to call OCI Generative AI in another tenancy is with OCI Cross tenancies Policies. In 2 parts,
 - where ODA Instance is hosted
 - where the GenAI Service is hosted.
 
