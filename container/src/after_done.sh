@@ -15,6 +15,8 @@ echo In Oracle Digital Assistant: add 2 REST API Services:
 echo - $UI_URL/app/20240531/agentEndpoints/{agentEndpointId}/sessions
 echo - $UI_URL/app/20240531/agentEndpoints/{agentEndpointId}/sessions/{sessionId}/actions/execute
 echo
+echo - $UI_URL/app/20231130/actions/chat
+echo
 echo For each of them 
 echo - Authentication Type: API_KEY
 echo - Include as: Header

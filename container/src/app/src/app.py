@@ -22,6 +22,8 @@ def log(s):
 
 # -- forward_request --------------------------------------------------------
 
+# -- Agent ------------------------------------------------
+
 @app.route('/20240531/<path:path>', methods=['POST'])
 def forward_request_post(path):
     log( "BEFORE SIGNER" )
@@ -37,6 +39,30 @@ def forward_request_post(path):
         return "ERROR" , 401
 
     target_url = f'https://agent-runtime.generativeai.{region}.oci.oraclecloud.com/20240531/{path}' 
+    log( target_url )
+
+    log("forward_request="+str(request.json)) 
+    resp = requests.post(target_url, json=request.json, auth=signer)
+    log(resp)
+    return resp.content
+
+# -- Inference ------------------------------------------------
+
+@app.route('/20231130/<path:path>', methods=['POST'])
+def forward_request_post(path):
+    log( "BEFORE SIGNER" )
+    signer = oci.auth.signers.get_resource_principals_signer()
+    config = {'region': signer.region, 'tenancy': signer.tenancy_id}
+    log( "AFTER SIGNER" )
+    
+    api_key = 'Key'
+    api_key_value = request.headers.get(api_key)
+
+    if api_key_value != 'Key ' + os.getenv('API_KEY'):
+        log( json.dumps(dict(request.headers), indent=4) ) 
+        return "ERROR" , 401
+
+    target_url = f'https://inference.generativeai.{region}.oci.oraclecloud.com/20231130/{path}' 
     log( target_url )
 
     log("forward_request="+str(request.json)) 
