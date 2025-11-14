@@ -25,7 +25,7 @@ def log(s):
 # -- Agent ------------------------------------------------
 
 @app.route('/20240531/<path:path>', methods=['POST'])
-def forward_request_post(path):
+def agent(path):
     log( "BEFORE SIGNER" )
     signer = oci.auth.signers.get_resource_principals_signer()
     config = {'region': signer.region, 'tenancy': signer.tenancy_id}
@@ -49,7 +49,7 @@ def forward_request_post(path):
 # -- Inference ------------------------------------------------
 
 @app.route('/20231130/<path:path>', methods=['POST'])
-def forward_request_post(path):
+def genai(path):
     log( "BEFORE SIGNER" )
     signer = oci.auth.signers.get_resource_principals_signer()
     config = {'region': signer.region, 'tenancy': signer.tenancy_id}
