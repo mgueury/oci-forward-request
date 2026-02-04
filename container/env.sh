@@ -9,7 +9,7 @@ export TF_VAR_api_key="__TO_FILL__"
 # API Key Name
 export TF_VAR_api_key_header="key"
 # Basic Auth
-# export TF_VAR_api_key_header="Authorization" 
+# export TF_VAR_api_key_header="authorization" 
 
 # export TF_VAR_api_key="12345"
 export TF_VAR_ui_type="none"

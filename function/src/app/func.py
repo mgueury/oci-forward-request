@@ -27,10 +27,10 @@ def handler(ctx, data: io.BytesIO = None):
     config = {'region': signer.region, 'tenancy': signer.tenancy_id}
     log( "AFTER SIGNER" )
 
-    api_key_header = os.getenv('API_KEY_HEADER', 'key')
+    api_key_header = os.getenv('API_KEY_HEADER', 'key').lower()
     api_key_value_raw = ctx.Headers().get(api_key_header)
     log("api_key_value_raw=" + str(api_key_value_raw))
-    if api_key_header.lower() == 'authorization' and api_key_value_raw:
+    if api_key_header == 'authorization' and api_key_value_raw:
         # Expect Basic auth
         parts = api_key_value_raw.split()
         if len(parts) == 2 and parts[0].lower() == 'basic':

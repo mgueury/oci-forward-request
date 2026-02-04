@@ -3,7 +3,7 @@ echo "-- CURL TEST COMMAND --------------------------------------------------"
 echo "curl -i \\"
 echo "     --request POST \\"
 echo "     --header \"Content-Type: application/json\" \\"
-if [ "$TF_VAR_api_key_header" == "Authorization" ]; then
+if [ "$TF_VAR_api_key_header" == "authorization" ]; then
   echo "     -u forwardfn:$TF_VAR_api_key \\"
 else
   echo "     --header \"Key: Key $TF_VAR_api_key\" \\"
@@ -20,7 +20,7 @@ echo - $UI_URL/app/20240531/agentEndpoints/{agentEndpointId}/sessions
 echo - $UI_URL/app/20240531/agentEndpoints/{agentEndpointId}/sessions/{sessionId}/actions/execute
 echo
 echo For each of them 
-if [ "$TF_VAR_api_key_header" == "Authorization" ]; then
+if [ "$TF_VAR_api_key_header" == "authorization" ]; then
    echo - Authentication Type: Basic Auth
    echo - User     : forwardfn
    echo - Password : $TF_VAR_api_key
