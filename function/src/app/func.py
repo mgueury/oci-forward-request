@@ -27,13 +27,6 @@ def handler(ctx, data: io.BytesIO = None):
     config = {'region': signer.region, 'tenancy': signer.tenancy_id}
     log( "AFTER SIGNER" )
 
-    api_key = 'key'
-    api_key_value = ctx.Headers().get(api_key)
-    log( "api_key_value=" + api_key_value )
-    if api_key_value != 'Key ' + os.getenv('API_KEY'):
-        log( json.dumps(ctx.Headers(), indent=4) ) 
-        return "ERROR" , 401
-
     api_key_header = os.getenv('API_KEY_HEADER', 'key')
     api_key_value_raw = ctx.Headers().get(api_key_header)
     log("api_key_value_raw=" + str(api_key_value_raw))
