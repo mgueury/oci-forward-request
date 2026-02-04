@@ -20,5 +20,5 @@ echo
 echo For each of them 
 echo - Authentication Type: API_KEY
 echo - Include as: Header
-echo - API_KEY Key   : Key
+echo - API_KEY Key   : $TF_VAR_api_key_header
 echo - API_KEY Value : $TF_VAR_api_key

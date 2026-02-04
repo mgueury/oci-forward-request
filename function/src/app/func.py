@@ -5,6 +5,7 @@ import logging
 import os
 import oci
 import requests
+import base64
 from fdk import response
 
 # -- log --------------------------------------------------------------------
@@ -32,6 +33,25 @@ def handler(ctx, data: io.BytesIO = None):
     if api_key_value != 'Key ' + os.getenv('API_KEY'):
         log( json.dumps(ctx.Headers(), indent=4) ) 
         return "ERROR" , 401
+
+    api_key_header = os.getenv('API_KEY_HEADER', 'key')
+    api_key_value_raw = ctx.Headers().get(api_key_header)
+    log("api_key_value_raw=" + str(api_key_value_raw))
+    if api_key_header.lower() == 'authorization' and api_key_value_raw:
+        # Expect Basic auth
+        parts = api_key_value_raw.split()
+        if len(parts) == 2 and parts[0].lower() == 'basic':
+            decoded = base64.b64decode(parts[1]).decode('utf-8')
+            # username:password
+            _, password = decoded.split(':', 1)
+            api_key_value = password
+        else:
+            api_key_value = api_key_value_raw
+    else:
+        api_key_value = api_key_value_raw
+    if api_key_value != os.getenv('API_KEY'):
+        log(json.dumps(ctx.Headers(), indent=4))
+        return "ERROR", 401
 
     path=ctx.RequestURL()
     path=path[path.index("20240531"):]

@@ -9,6 +9,8 @@ export TF_VAR_deploy_type="function"
 export TF_VAR_language="python"
 
 export TF_VAR_api_key="__TO_FILL__"
+# Basic Auth
+# export TF_VAR_api_key_header="Authorization"
 export TF_VAR_compartment_ocid="__TO_FILL__"
 
 if [ -f $HOME/.oci_starter_profile ]; then
