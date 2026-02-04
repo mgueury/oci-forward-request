@@ -16,7 +16,14 @@ echo - $UI_URL/app/20240531/agentEndpoints/{agentEndpointId}/sessions
 echo - $UI_URL/app/20240531/agentEndpoints/{agentEndpointId}/sessions/{sessionId}/actions/execute
 echo
 echo For each of them 
-echo - Authentication Type: API_KEY
-echo - Include as: Header
-echo - API_KEY Key   : Key
-echo - API_KEY Value : $TF_VAR_api_key
+if [ "$TF_VAR_api_key_header" == "Authorization" ]; then
+   echo - Authentication Type: Basic Auth
+   echo - User     : forwardfn
+   echo - Password : $TF_VAR_api_key
+else
+   echo - Authentication Type: API_KEY
+   echo - Include as: Header
+   echo - API_KEY Key   : $TF_VAR_api_key_header
+   echo - API_KEY Value : $TF_VAR_api_key
+fi
+
