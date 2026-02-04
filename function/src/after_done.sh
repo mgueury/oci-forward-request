@@ -3,7 +3,11 @@ echo "-- CURL TEST COMMAND --------------------------------------------------"
 echo "curl -i \\"
 echo "     --request POST \\"
 echo "     --header \"Content-Type: application/json\" \\"
-echo "     --header \"Key: Key $TF_VAR_api_key\" \\"
+if [ "$TF_VAR_api_key_header" == "Authorization" ]; then
+  echo "     -u forwardfn:$TF_VAR_api_key \\"
+else
+  echo "     --header \"Key: Key $TF_VAR_api_key\" \\"
+fi
 echo "     --data '{\"idleTimeoutInSeconds\": \"3600\"}' \\"
 echo "     $UI_URL/app/20240531/agentEndpoints/{agentEndpointId}/sessions"
 echo
